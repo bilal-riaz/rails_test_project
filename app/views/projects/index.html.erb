@@ -1,0 +1,35 @@
+<h1>Listing Projects</h1>
+<div class='container'>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td class = 'text'><%= project.title %></td>
+          <td class = 'text'><%= project.description %></td>
+          <td><%if is_admin? || is_manager? %>
+              <%= link_to  edit_client_project_path(@client, project) do %>
+                <i class="fa fa-edit fa-fw"></i>
+              <% end %>
+              <% end %></td>
+          <td><%if is_admin? %>
+                <%= link_to client_project_path(@client,project), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+                  <i class="glyphicon glyphicon-trash fa-fw"></i>
+                <% end %>
+              <% end %></td>
+          <td><%= link_to  client_project_timelogs_path(@client, project) do %>
+                <i class="fa fa-eye fa-fw"></i><span class="ml-2">View Project Timelogs</span> 
+              <% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

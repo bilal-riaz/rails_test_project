@@ -1,0 +1,33 @@
+<div class='container'>
+  <%= link_to 'Create User', new_admin_user_path, class: 'btn btn-success' %>
+  <h1>Users</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td class = 'text'><%= user.name %></td>
+          <td class = 'text'><%= user.email %></td>
+          <td><%= user.type %></td>
+          <td><% if user.isEnable? %>
+            <%= link_to 'Disable', toggle_status_admin_user_path(user.id), method: :patch,class: 'btn btn-primary button' %>
+          <% else %>
+            <%= link_to 'Enable', toggle_status_admin_user_path(user.id), method: :patch,class: 'btn btn-primary button' %>
+          <% end %></td>
+          <td><% if user.type == 'Developer' %>
+            <%= link_to 'Change Role', make_manager_admin_user_path(user.id),method: :patch, class: 'btn btn-primary ' %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

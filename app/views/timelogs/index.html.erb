@@ -1,0 +1,7 @@
+<h1>Listing Timelogs</h1>
+<% @project.timelogs.each do |timelog| %>
+  <div class = "well">
+    <span><%= timelog.no_of_hours_spent %></span>
+    <h3><%= timelog.date %></h3>
+   </div>          
+<% end %> 

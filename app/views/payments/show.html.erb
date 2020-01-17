@@ -1,0 +1,12 @@
+<div class = "well">
+  <p>
+    <strong>Payment Amount:</strong>
+    <%= @payment.amount %>
+  </p>
+  <p>
+    <strong>Payment Paid At:</strong>
+    <%= @payment.paid_at %>
+  </p>
+  <%= link_to 'Edit',  edit_payment_path(@payment), class: 'btn btn-primary' %>
+  <%= link_to 'Destroy', project_path(@project), class: 'btn btn-primary', method: :delete, data: { confirm: 'Are you sure?' } %>  
+</div>

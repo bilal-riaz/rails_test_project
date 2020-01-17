@@ -1,0 +1,31 @@
+<div class = "well">
+	<p>
+    <strong>Project Title:</strong>
+    <%= @project.title %>
+	</p>
+ 
+	<p>
+	  <strong>Project Description:</strong>
+	  <%= @project.description %>
+	</p>
+
+  <%if is_admin? || is_manager? %>
+    <%= link_to 'Edit',  edit_client_project_path(@project), class: 'btn btn-primary' %>
+      <%if current_user.type == 'Admin'%>
+        <%= link_to edit_client_project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+          <i class="glyphicon glyphicon-trash fa-fw"></i>
+        <% end %>
+      <% end %>
+    <% if @project.payments.present? %>
+      <% @project.payments.each do |payment|%>
+        <div class = "well" style="margin-top:8px;">
+          <strong>Payment Amount:</strong><br>
+          <h3><%= payment.amount %></h3>
+          <strong>Payment Paid At:</strong>
+          <h3><%= payment.paid_at %></h3>
+          <%= link_to 'Edit Payment',  edit_payment_path(payment),class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    <% end %>
+  <%end%>
+</div>

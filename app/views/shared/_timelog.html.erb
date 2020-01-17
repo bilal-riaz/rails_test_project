@@ -1,0 +1,26 @@
+<%= form_with scope: :timelog,  local: true do |form| %>
+  <% if @timelog.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@timelog.errors.count, "error") %> prohibited
+        this timelog from being saved:
+      </h2>
+      <ul>
+        <% @timelog.errors.full_messages.each do |msg| %>
+          <li class="text-danger" ><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :no_of_hours_spent %><br>
+    <%= form.text_field :no_of_hours_spent , class: 'form-control'%>
+  </p>
+ 
+  <p>
+    <%= form.label :date %><br>
+    <%= form.date_field :date , class: 'form-control'%>
+  </p>
+    <%= form.submit(class: 'btn btn-primary') %><br>
+  </p>
+<% end %>

@@ -1,0 +1,29 @@
+<%= form_with scope: :payment, url: payments_path, local: true do |form| %>
+  <% if @payment.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@payment.errors.count, "error") %> prohibited
+        this Payment from being saved:
+      </h2>
+      <ul>
+        <% @payment.errors.full_messages.each do |msg| %>
+          <li class="text-danger" ><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :amount %><br>
+    <%= form.text_field :amount , class: 'form-control'}%>
+  </p>
+ 
+  <p>
+    <%= form.label :paid_at %><br>
+    <%= form.text_field :paid_at , class: 'form-control'}%>
+  </p>
+ 
+  <p>
+    <%= form.submit(class: 'form-control') %><br>
+  </p>
+ 
+<% end %>

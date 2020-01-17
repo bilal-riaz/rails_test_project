@@ -1,0 +1,29 @@
+<%= form_for [@client, @project] , local: true do |form| %>
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2>client_
+        <%= pluralize(@project.errors.count, "error") %> prohibited
+        this project from being saved:
+      </h2>
+      <ul>
+        <% @project.errors.full_messages.each do |msg| %>
+          <li class="text-danger" ><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title , class: 'form-control'%>
+  </p>
+ 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description, class: 'form-control'%>
+  </p>
+
+  <p>
+    <%= form.submit(class: 'btn btn-primary') %><br>
+  </p>
+ 
+<% end %>

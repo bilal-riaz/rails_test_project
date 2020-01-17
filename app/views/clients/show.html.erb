@@ -1,0 +1,50 @@
+<% if is_admin? || is_manager? %>
+  <%= link_to 'Create User', new_client_path, class: 'btn btn-success' %>
+<%end%>
+<h1>Client Details</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th colspan="4"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <td ><%= @client.name %></td>
+          <td ><%= @client.city %></td>
+          <td ><%= @client.country %></td>
+          <td><%if is_admin? %>
+                <%= link_to  edit_client_path(@client) do %>
+                  <i class="fa fa-edit fa-fw icon"></i>
+                <% end %>    
+                <%= link_to client_path(@client), method: :delete, data: { confirm: 'Are you sure?' }, remote: true do %>
+                  <i class="glyphicon glyphicon-trash fa-fw icon"></i>
+                <% end %>
+                <%= link_to 'Show Projects',  client_projects_path(@client), class: 'btn btn-primary' %>
+                <%= link_to 'Create Project',  new_client_project_path(@client), class: 'btn btn-primary' %>
+              <%end%></td>
+          <td><%if is_manager?  %>
+                <%= link_to  edit_client_path(@client), class: 'btn btn-primary' do %>
+                  <i class="fa fa-edit"></i><span class="ml-2">Project</span> 
+                <% end %>
+                <%= link_to 'Show Projects',  client_projects_path(@client), class: 'btn btn-primary' %>
+                <<%= link_to 'Create New Project',  new_client_project_path(@client), class: 'btn btn-primary' %>
+                <%end%>
+                <%if current_user.type == 'Developer'%>
+                  <%= link_to 'Show Projects',  client_projects_path(@client), class: 'btn btn-primary' %>
+                  <br/>
+                <%end%></td>
+
+          <td><%if current_user.type == 'Developer'%>
+                <%= link_to 'Show Projects',  client_projects_path(@client), class: 'btn btn-primary' %>
+                <br/>
+              <%end%></td>
+        </tr>
+    </tbody>
+  </table>
+
+

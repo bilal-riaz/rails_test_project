@@ -1,0 +1,38 @@
+<div class = "well">
+	<p>
+  		<strong>Project Title:</strong>
+  		<%= @project.title %>
+	</p>
+
+	<p>
+  		<strong>Project Description:</strong>
+ 		<%= @project.description %>
+	</p>
+
+	<%= link_to 'Edit',  edit_client_project_path(@project),class: 'btn btn-primary' %>
+    <%= link_to 'Destroy', client_projects_path(@project), class: 'btn btn-primary',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+
+  <% if @project.timelogs.present? %>
+    <% @project.timelogs.each do |timelog|%>
+      <div class = "well" style="margin-top:8px;">
+        <strong>Hours Spent</strong>
+        <h3><%= timelog.no_of_hours_spent%></h3> 
+        <strong>Date:</strong>
+        <h3><%= timelog.date %></h3>
+        <%= link_to 'Edit Timelog',  edit_client_project_timelog_path(timelog), class: 'btn btn-primary' %>             
+      </div>
+  <% end %>
+  <% if @project.payments.present? %>
+    <% @project.payments.each do |payment|%>
+      <div class = "well" style="margin-top:8px;">
+        <strong>Payment Amount:</strong><br>
+          <h3><%= payment.amount %></h3>
+        <strong>Payment Paid At:</strong>
+        <h3><%= payment.paid_at %></h3>
+        <%= link_to 'Edit Payment',  edit_payment_path(payment), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

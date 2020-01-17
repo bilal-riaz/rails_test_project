@@ -1,0 +1,38 @@
+<%= form_with model: @client, local: true do |form| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@client.errors.count, "error") %> prohibited
+        this client from being saved:
+      </h2>
+      <ul>
+        <% @client.errors.full_messages.each do |msg| %>
+          <li class="text-danger"><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name , class: 'form-control'%>
+  </p>
+ 
+  <p>
+    <%= form.label :city %><br>
+    <%= form.text_field :city , class: 'form-control'%>
+  </p>
+
+  <p>
+    <%= form.label :email %><br>
+    <%= form.text_field :email , class: 'form-control'%>
+  </p>
+
+  <p>
+    <%= form.label :country %><br>
+    <%= form.country_select :country , class: 'form-control'%>
+  </p>
+
+  <p>
+    <%= form.submit(class: 'btn btn-primary') %><br>
+  </p>
+<% end %>

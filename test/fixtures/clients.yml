@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  city: 
+  country: MyString
+
+two:
+  name: 
+  city: 
+  country: MyString
